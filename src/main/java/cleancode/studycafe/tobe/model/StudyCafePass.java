@@ -1,5 +1,7 @@
 package cleancode.studycafe.tobe.model;
 
+import java.util.Set;
+
 public class StudyCafePass {
 
     private final StudyCafePassType passType;
@@ -16,6 +18,10 @@ public class StudyCafePass {
 
     public static StudyCafePass of(StudyCafePassType passType, int duration, int price, double discountRate) {
         return new StudyCafePass(passType, duration, price, discountRate);
+    }
+
+    public boolean isSamePassType(StudyCafePassType passType) {
+        return this.passType == passType;
     }
 
     public StudyCafePassType getPassType() {
@@ -47,4 +53,19 @@ public class StudyCafePass {
         return "";
     }
 
+    public boolean isSameDurationType(StudyCafeLockerPass lockerPass) {
+        return lockerPass.isSamePassType(this.passType)
+            && lockerPass.isSameDuration(this.duration);
+    }
+
+    public boolean doesNotFixedType() {
+        return this.passType != StudyCafePassType.FIXED;
+    }
+
+
+    public boolean cannotUserLocker() {
+        // 이용권 추가시 변경이 필요하다.
+        // -> 사물함을 사용할 수 있는 패스 타입을 상수로 관리하자.
+        return this.passType.isNotLockerType();
+    }
 }
