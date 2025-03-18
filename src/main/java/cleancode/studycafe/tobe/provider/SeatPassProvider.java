@@ -6,4 +6,6 @@ public interface SeatPassProvider {
 
     StudyCafeSeatPasses getSeatPasses();
 
+	StudyCafeSeatPasses getSeatPassesFrom(String path);
+
 }

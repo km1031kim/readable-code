@@ -11,6 +11,7 @@ public class InputHandler {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
+	// 테스트 여기 일단 하나.. 예외 및 1, 2, 3 에 따른 반응
     public StudyCafePassType getPassTypeSelectingUserAction() {
         String userInput = SCANNER.nextLine();
 

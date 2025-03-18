@@ -15,10 +15,33 @@ public class LockerPassFileReader implements LockerPassProvider {
 
     private static final String LOCKER_LIST_CSV_PATH = "src/main/resources/cleancode/studycafe/locker.csv";
 
-    @Override
-    public StudyCafeLockerPasses getLockerPasses() {
+
+	@Override
+	public StudyCafeLockerPasses getLockerPasses() {
+		try {
+			List<String> lines = Files.readAllLines(Paths.get(LOCKER_LIST_CSV_PATH));
+			List<StudyCafeLockerPass> lockerPasses = new ArrayList<>();
+			for (String line : lines) {
+				String[] values = line.split(",");
+				StudyCafePassType studyCafePassType = StudyCafePassType.valueOf(values[0]);
+				int duration = Integer.parseInt(values[1]);
+				int price = Integer.parseInt(values[2]);
+
+				StudyCafeLockerPass lockerPass = StudyCafeLockerPass.of(studyCafePassType, duration, price);
+				lockerPasses.add(lockerPass);
+			}
+
+			return StudyCafeLockerPasses.of(lockerPasses);
+		} catch (IOException e) {
+			throw new RuntimeException("파일을 읽는데 실패했습니다.", e);
+		}
+	}
+
+
+	@Override
+    public StudyCafeLockerPasses getLockerPassesFrom(String path) {
         try {
-            List<String> lines = Files.readAllLines(Paths.get(LOCKER_LIST_CSV_PATH));
+            List<String> lines = Files.readAllLines(Paths.get(path));
             List<StudyCafeLockerPass> lockerPasses = new ArrayList<>();
             for (String line : lines) {
                 String[] values = line.split(",");

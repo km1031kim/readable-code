@@ -24,4 +24,5 @@ public enum StudyCafePassType {
         return !isLockerType();
     }
 
+
 }

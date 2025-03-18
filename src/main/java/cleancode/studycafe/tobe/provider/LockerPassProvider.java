@@ -6,4 +6,5 @@ public interface LockerPassProvider {
 
     StudyCafeLockerPasses getLockerPasses();
 
+	StudyCafeLockerPasses getLockerPassesFrom(String path);
 }

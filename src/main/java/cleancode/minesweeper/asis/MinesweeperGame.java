@@ -15,11 +15,17 @@ public class MinesweeperGame {
         System.out.println("지뢰찾기 게임 시작!");
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         Scanner scanner = new Scanner(System.in);
+
+
+        // 얘는 뭘 하는 걸까?
+        // 보드를 초기화 하는 것 같아.
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 10; j++) {
                 board[i][j] = "□";
             }
         }
+
+        // 지뢰를 초기화
         for (int i = 0; i < 10; i++) {
             int col = new Random().nextInt(10);
             int row = new Random().nextInt(8);

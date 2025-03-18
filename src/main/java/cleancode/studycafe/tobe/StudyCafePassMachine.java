@@ -28,8 +28,10 @@ public class StudyCafePassMachine {
             ioHandler.showWelcomeMessage();
             ioHandler.showAnnouncement();
 
-            StudyCafeSeatPass selectedPass = selectPass();
+            StudyCafeSeatPass selectedPass = selectPass(); // HOUR
+
             Optional<StudyCafeLockerPass> optionalLockerPass = selectLockerPass(selectedPass);
+
             StudyCafePassOrder passOrder = StudyCafePassOrder.of(
                 selectedPass,
                 optionalLockerPass.orElse(null)
@@ -50,11 +52,13 @@ public class StudyCafePassMachine {
         return ioHandler.askPassSelecting(passCandidates);
     }
 
+	// 여기도 하나 하는걸로
     private List<StudyCafeSeatPass> findPassCandidatesBy(StudyCafePassType studyCafePassType) {
         StudyCafeSeatPasses allPasses = seatPassProvider.getSeatPasses();
         return allPasses.findPassBy(studyCafePassType);
     }
 
+	// 여기도 하나 하는걸로
     private Optional<StudyCafeLockerPass> selectLockerPass(StudyCafeSeatPass selectedPass) {
         if (selectedPass.cannotUseLocker()) {
             return Optional.empty();
